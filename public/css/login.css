@@ -1,0 +1,86 @@
+/* Styling untuk latar belakang halaman */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(135deg, #dff2eb, #b9e5e8);
+}
+
+/* Card Login */
+.card {
+    background: linear-gradient(145deg, #7ab2d3, #4a628a);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efek dekoratif garis */
+.card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Card Title */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Input field styling */
+.form-control {
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #dff2eb;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(122, 178, 211, 0.5);
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #4a628a;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #7ab2d3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Teks link */
+.text-center a {
+    color: #dff2eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+}
