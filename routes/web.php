@@ -13,7 +13,6 @@ use App\Http\Controllers\EventMatchController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 
-
 // Route untuk halaman utama
 Route::get('/', function () {
     return view('home');
@@ -36,9 +35,6 @@ Route::get('register', function () {
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-
 
 // Route untuk dashboard dengan pengecekan autentikasi dan role
 Route::get('/index', function () {
@@ -67,8 +63,6 @@ Route::get('/official/index', function () {
     ->name('official.index')
     ->middleware('auth');
 
-
-
 // Route group untuk admin
 Route::middleware('auth')
     ->prefix('admin')
@@ -76,23 +70,22 @@ Route::middleware('auth')
     ->group(function () {
         // Dashboard admin
         Route::get('/index', [AdminController::class, 'index'])->name('index');
-        
+
         // Route group untuk manajemen kontingen
         Route::prefix('manajemen')
-        ->name('manajemen.')
-        ->group(function () {
-            Route::get('/', [ManajemenController::class, 'index'])->name('index');
-            Route::get('/create', [ManajemenController::class, 'create'])->name('create');
-            Route::post('/', [ManajemenController::class, 'store'])->name('store');
-            Route::get('/{id}', [ManajemenController::class, 'show'])->name('show');
-            Route::get('/{id}/edit', [ManajemenController::class, 'edit'])->name('edit');
-            Route::put('/{id}', [ManajemenController::class, 'update'])->name('update');
-            Route::delete('/{id}', [ManajemenController::class, 'destroy'])->name('destroy');
-
+            ->name('manajemen.')
+            ->group(function () {
+                Route::get('/', [ManajemenController::class, 'index'])->name('index');
+                Route::get('/create', [ManajemenController::class, 'create'])->name('create');
+                Route::post('/', [ManajemenController::class, 'store'])->name('store');
+                Route::get('/{id}', [ManajemenController::class, 'show'])->name('show');
+                Route::get('/{id}/edit', [ManajemenController::class, 'edit'])->name('edit');
+                Route::put('/{id}', [ManajemenController::class, 'update'])->name('update');
+                Route::delete('/{id}', [ManajemenController::class, 'destroy'])->name('destroy');
             });
-            
-            // Route group untuk official
-            Route::prefix('officials')
+
+        // Route group untuk official
+        Route::prefix('officials')
             ->name('officials.')
             ->group(function () {
                 Route::get('/create/{kontingenId}', [OfficialController::class, 'create'])->name('create');
@@ -113,20 +106,25 @@ Route::middleware('auth')
             });
     });
 
-    Route::middleware('auth')
+Route::middleware('auth')
     ->prefix('official')
     ->name('official.')
     ->group(function () {
-
-    Route::get('/index', [UserController::class, 'index'])->name('index');
+        Route::get('/index', [UserController::class, 'index'])->name('index');
+        Route::get('/kontingen/{kontingen}', [KontingenController::class, 'indexOfficial'])->name('kontingen.index');
+        Route::get('/atlet', [UserController::class, 'atlet'])->name('atlet');
+        Route::get('/official', [UserController::class, 'official'])->name('official');
+        Route::get('/{id}', [UserController::class, 'show'])->name('show');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/', [ManajemenController::class, 'store'])->name('store');
     });
+
 // Route untuk Kategori Tanding
 Route::get('/admin/categories/tanding/{category_id}', [TandingController::class, 'index'])->name('admin.categories.tanding');
 
 Route::get('/matches', [EventMatchController::class, 'index'])->name('matches.index');
 Route::post('/matches/create-bracket', [EventMatchController::class, 'createBracket'])->name('admin.eventMatches.createBracket');
 Route::post('/matches/{id}/update-winner', [EventMatchController::class, 'updateWinner'])->name('matches.updateWinner');
-
 
 Route::get('/', [KontingenController::class, 'create'])->name('kontingen.create');
 Route::post('/daftar-kontingen', [KontingenController::class, 'store'])->name('kontingen.store');

@@ -83,12 +83,6 @@
                         <h3>Officials</h3>
                         <div class="card" style="width: 100%;">
                             <div class="card-body">
-                                @if ($kontingen)
-                                    <a href="{{ route('admin.officials.create', $kontingen->id) }}"
-                                        class="btn btn-primary mb-3">Tambah Official</a>
-                                @else
-                                    <p>Kontingen tidak ditemukan.</p>
-                                @endif
 
                                 <table class="table table-striped table-bordered table-center">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -128,18 +122,6 @@
                                                             data-bs-toggle="dropdown" aria-expanded="false">
                                                             Aksi
                                                         </button>
-                                                        <ul class="dropdown-menu"
-                                                            aria-labelledby="dropdownMenuButton-{{ $loop->iteration }}">
-                                                            <li>
-                                                                @if ($kontingen)
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('admin.officials.edit', $official->id) }}">Edit</a>
-                                                                @else
-                                                                    <p>Kontingen tidak ditemukan.</p>
-                                                                @endif
-                                                            </li>
-                                                            <li><a class="dropdown-item" href="#">Hapus</a></li>
-                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -155,15 +137,6 @@
                         <h3>Atlets</h3>
                         <div class="card" style="width: 100%;">
                             <div class="card-body">
-                                @if ($kontingen)
-                                    <a href="{{ route('admin.atlets.create', ['kontingenId' => $kontingen->id]) }}"
-                                        class="btn btn-primary mb-3">
-                                        Tambah Atlet
-                                    </a>
-                                @else
-                                    <p>Kontingen tidak ditemukan.</p>
-                                @endif
-
                                 <table class="table table-striped table-bordered text-center table-center">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <select name="per_page" id="per_page" class="form-select d-inline-block w-auto"
@@ -221,24 +194,7 @@
                                                             id="dropdownMenuButton-{{ $loop->iteration }}"
                                                             data-bs-toggle="dropdown" aria-expanded="false">
                                                             Aksi
-                                                        </button>
-                                                        <ul class="dropdown-menu"
-                                                            aria-labelledby="dropdownMenuButton-{{ $loop->iteration }}">
-                                                            <li><a class="dropdown-item"
-                                                                    href="{{ route('admin.atlets.edit', $atlet->id) }}">Edit</a>
-                                                            </li>
-                                                            <li>
-                                                                <form
-                                                                    action="{{ route('admin.atlets.destroy', $atlet->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus atlet ini?');">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="dropdown-item9 text-danger">Hapus</button>
-                                                                </form>
-                                                            </li>
-                                                        </ul>
+                                                    </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -254,6 +210,6 @@
 
     </div>
     <div class="container mt-3">
-        <a href="{{ route('admin.manajemen.index') }}" class="btn btn-secondary">Kembali ke Daftar Kontingen</a>
+        <a href="{{ route('official.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
 @endsection

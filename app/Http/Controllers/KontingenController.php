@@ -13,6 +13,7 @@ class KontingenController extends Controller
         // Kirim data ke view
         return view('admin.manajemen.show', compact('kontingen'));
     }
+    
     public function create()
     {
         // Menampilkan halaman form pendaftaran kontingen

@@ -9,7 +9,7 @@ class Atlet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['kontingen_id', 'category_id', 'name', 'gender', 'birth_date', 'weight', 'height','photo'];
+    protected $fillable = ['kontingen_id', 'category_id', 'name', 'gender', 'birth_date', 'weight', 'height', 'photo'];
 
     // Relasi ke Kontingen
     public function kontingen()

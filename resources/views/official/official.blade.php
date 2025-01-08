@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     @stack('styles')
-    @section('title', 'Official Dashboard') <!-- Judul halaman -->
+    @section('title', 'Admin Dashboard')
 </head>
 
 <body>
@@ -79,79 +79,43 @@
         </form>
     </div>
 
-
-
+    <!-- Main Content -->
     <main class="main-page-specific col-md-9 col-lg-10 p-4">
-        <h1>Selamat Bergabung pada Event Kejuaraan Pencak Silat</h1>
-        <p>Persiapkan Diri Untuk Menyambut Kemenangan</p>
-
-        @if ($kontingens->isEmpty())
-            <!-- Notifikasi Kontingen Belum Terdaftar -->
-            <div class="alert alert-warning" role="alert">
-                <h4 class="alert-heading">Kontingen Belum Terdaftar</h4>
-                <p>Anda belum mendaftarkan kontingen. Klik tombol di bawah untuk mendaftarkan kontingen.</p>
-                <hr>
-                <a href="{{ route('admin.kontingen.create') }}" class="btn btn-primary">Daftar Kontingen</a>
-            </div>
-        @else
-            <!-- Data Dashboard -->
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="card shadow-lg border-light rounded">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Kontingen</h5>
-                            <p class="card-text fs-4 text-success">{{ $totalKontingen }} Kontingen</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-lg border-light rounded">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Atlet</h5>
-                            <p class="card-text fs-4 text-warning">{{ $totalAtlet }} Atlet</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-lg border-light rounded">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Official</h5>
-                            <p class="card-text fs-4 text-primary">{{ $totalOfficial }} Official</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h1>Daftar Kontingen</h1>
-            <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>Total Official</th>
-                        <th>Total Atlet </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($kontingens as $kontingen)
+        <div class="tab-content mt-3">
+            <!-- Official Table -->
+            <div class="tab-pane fade show active" id="official">
+                <h3>Official</h3>
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ $kontingen->id }}</td>
-                            <td>{{ $kontingen->name }}</td>
-                            <td>{{ $kontingen->address }}</td>
-                            <td>{{ $kontingen->atlets->count()}}</td>
-                            <td>{{ $kontingen->officials->count()}}</td>
-                            <td>
-                                <a href="{{ route('official.show', $kontingen->id) }}"
-                                    class="btn btn-info">Detail</a>
-                            </td>
+                            <th>No</th>
+                            <th>Nama Kontingen</th>
+                            <th>Nama Official</th>
+                            <th>Gender</th>
+                            <th>Jabatan</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
+                    </thead>
+                    <tbody>
+                        @php
+                            $number = 1; // Inisialisasi nomor awal
+                        @endphp
+                        @foreach ($kontingens as $kontingen)
+                            @foreach ($kontingen->officials as $official)
+                                <tr>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $kontingen->name }}</td>
+                                    <td>{{ $official->name }}</td>
+                                    <td>{{ $official->gender }}</td>
+                                    <td>{{ $official->Jabatan }}</td>
+                                </tr>
+                            @endforeach
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
     </main>
-
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Grafik Placeholder

@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="col-12 text-center mt-4">
-                        <button class="btn-dftr btn-light" onclick="location.href='{{ route('home') }}'">login untuk daftar</button>
+                        <button class="btn-dftr btn-light" onclick="location.href='{{ route('login') }}'">login untuk daftar</button>
                     </div>
                 </div>
             </div>
