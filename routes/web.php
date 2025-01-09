@@ -82,6 +82,8 @@ Route::middleware('auth')
                 Route::get('/{id}/edit', [ManajemenController::class, 'edit'])->name('edit');
                 Route::put('/{id}', [ManajemenController::class, 'update'])->name('update');
                 Route::delete('/{id}', [ManajemenController::class, 'destroy'])->name('destroy');
+                Route::get('/laporan', [ManajemenController::class, 'ViewLaporan'])->name('laporan');
+                Route::get('/report', [ManajemenController::class, 'print'])->name('report');
             });
 
         // Route group untuk official
@@ -119,12 +121,9 @@ Route::middleware('auth')
         Route::post('/', [ManajemenController::class, 'store'])->name('store');
     });
 
-// Route untuk Kategori Tanding
-Route::get('/admin/categories/tanding/{category_id}', [TandingController::class, 'index'])->name('admin.categories.tanding');
+Route::get('/export-pdf', [ManajemenController::class, 'print']);
+Route::get('/export/{id}', [ManajemenController::class, 'printDetail'])->name('export');
 
-Route::get('/matches', [EventMatchController::class, 'index'])->name('matches.index');
-Route::post('/matches/create-bracket', [EventMatchController::class, 'createBracket'])->name('admin.eventMatches.createBracket');
-Route::post('/matches/{id}/update-winner', [EventMatchController::class, 'updateWinner'])->name('matches.updateWinner');
 
-Route::get('/', [KontingenController::class, 'create'])->name('kontingen.create');
-Route::post('/daftar-kontingen', [KontingenController::class, 'store'])->name('kontingen.store');
+
+

@@ -12,10 +12,9 @@
         <!-- Navigasi -->
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#check">Check Data</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="#schedule">Live Jadwal</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#silat">Tentang silat</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#footer">Contact</a></li>
             </ul>
             <button class="btn btn-outline-success" onclick="location.href='{{ route('login') }}'">Login</button>
         </div>

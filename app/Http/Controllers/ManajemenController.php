@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kontingen;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -110,4 +111,26 @@ class ManajemenController extends Controller
 
         return redirect()->route('admin.manajemen.index')->with('success', 'Kontingen berhasil dihapus.');
     }
+
+    public function print()
+    {
+        $kontingen = Kontingen::all();
+        $pdf = Pdf::loadView('pdf.report', compact('kontingen'));
+        return $pdf->download('Daftar_Kontingen.pdf');
+    }
+    public function printDetail($id)
+{
+    // Mendapatkan kontingen berdasarkan ID
+    $kontingen = Kontingen::find($id);
+
+    // Pastikan jika kontingen ditemukan
+    if ($kontingen) {
+        $pdf = Pdf::loadView('pdf.reportDetail', compact('kontingen'));
+        return $pdf->download('Detail_Kontingen.pdf');
+    }
+
+    // Jika kontingen tidak ditemukan, redirect kembali
+    return redirect()->route('admin.manajemen.index')->with('error', 'Kontingen tidak ditemukan');
+}
+
 }

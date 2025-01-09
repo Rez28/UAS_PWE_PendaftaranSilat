@@ -48,21 +48,6 @@
             </svg>
             <h5 class="nav-text">Manajemen</h5>
         </a>
-
-
-        <!-- Tambahan: Pertandingan -->
-        <a href="./matches" class="nav-item mb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-calendar-event" viewBox="0 0 16 16">
-                <path
-                    d="M4 0h8a1 1 0 0 1 1 1v1h-1V1a1 1 0 0 0-1-1H5a1 1 0 0 1-1-1v1H3V1a1 1 0 0 0-1-1H1a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2H4v1z" />
-                <path
-                    d="M3 2h10v1H3V2zm4 4.5a.5.5 0 0 1 .5.5V7a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5zM4 6h8v2H4V6zm7 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5z" />
-                <path fill-rule="evenodd"
-                    d="M0 9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V9zm13 1h-2v2H5V8h2v1a.5.5 0 0 0 1 0v-1h3v2z" />
-            </svg>
-            <h5 class="nav-text">Pertandingan</h5>
-        </a>
         <!-- Kategori Tanding/Seni -->
         <div class="nav-item mb-2">
             <div class="dropdown">
@@ -108,7 +93,33 @@
 
     <main class="main-page-specific col-md-9 col-lg-10 p-4">
         <h1>Daftar Kontingen</h1>
-        <a href="{{ route('admin.manajemen.create') }}" class="btn btn-primary mb-3">Tambah Kontingen</a>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <!-- Tombol Tambah Kontingen -->
+                <a href="{{ route('admin.manajemen.create') }}" class="btn btn-primary mb-3"
+                    aria-label="Tambah Kontingen">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-plus-circle" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                    </svg>
+                    Tambah Kontingen
+                </a>
+
+                <!-- Tombol Print PDF -->
+                <a href="/export-pdf" class="btn btn-secondary mb-3" aria-label="Print PDF">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                        class="bi bi-printer-fill" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1" />
+                        <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                    </svg>
+                    Print PDF
+                </a>
+
+            </div>
+        </div>
+
         <table class="table table-bordered text-center">
             <thead>
                 <tr>
@@ -126,8 +137,8 @@
                         <td>{{ $kontingen->id }}</td>
                         <td>{{ $kontingen->name }}</td>
                         <td>{{ $kontingen->address }}</td>
-                        <td>{{ $kontingen->total_official }}</td>
-                        <td>{{ $kontingen->total_atlet }}</td>
+                        <td>{{ $kontingen->atlets->count() }}</td>
+                        <td>{{ $kontingen->officials->count() }}</td>
 
                         <td>
                             <a href="{{ route('admin.manajemen.show', $kontingen->id) }}"

@@ -39,15 +39,9 @@ main {
     left: 0;
     width: 100%;
     z-index: 10;
-    background-color: transparent !important; /* Awal transparan */
+    background-color: #89a8b27c; /* Awal transparan */
     box-shadow: none;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Navbar setelah di-scroll */
-.navbar.scrolled {
-    background-color: white !important; /* Setelah di-scroll putih */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opsional: Tambahkan bayangan */
 }
 
 /* Warna default */
@@ -364,4 +358,8 @@ hr.my-2 {
 .table-center td {
     text-align: center; /* Rata tengah horizontal */
     vertical-align: middle; /* Rata tengah vertikal */
+}
+
+html {
+    scroll-behavior: smooth;
 }
