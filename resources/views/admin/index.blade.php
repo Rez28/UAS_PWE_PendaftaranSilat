@@ -48,21 +48,6 @@
             </svg>
             <h5 class="nav-text">Manajemen</h5>
         </a>
-
-
-        <!-- Tambahan: Pertandingan -->
-        <a href="./matches" class="nav-item mb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-calendar-event" viewBox="0 0 16 16">
-                <path
-                    d="M4 0h8a1 1 0 0 1 1 1v1h-1V1a1 1 0 0 0-1-1H5a1 1 0 0 1-1-1v1H3V1a1 1 0 0 0-1-1H1a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2H4v1z" />
-                <path
-                    d="M3 2h10v1H3V2zm4 4.5a.5.5 0 0 1 .5.5V7a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5zM4 6h8v2H4V6zm7 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5z" />
-                <path fill-rule="evenodd"
-                    d="M0 9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V9zm13 1h-2v2H5V8h2v1a.5.5 0 0 0 1 0v-1h3v2z" />
-            </svg>
-            <h5 class="nav-text">Pertandingan</h5>
-        </a>
         <!-- Kategori Tanding/Seni -->
         <div class="nav-item mb-2">
             <div class="dropdown">

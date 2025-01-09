@@ -121,6 +121,18 @@ Route::middleware('auth')
         Route::post('/', [ManajemenController::class, 'store'])->name('store');
     });
 
+// Route untuk kategori tanding
+Route::get('/admin/categories/tanding/{category_id}', [TandingController::class, 'index'])->name('admin.categories.tanding');
+
+// Route untuk pertandingan
+Route::get('/matches', [EventMatchController::class, 'index'])->name('matches.index');
+Route::post('/matches/create-bracket', [EventMatchController::class, 'createBracket'])->name('admin.eventMatches.createBracket');
+Route::post('/matches/{id}/update-winner', [EventMatchController::class, 'updateWinner'])->name('matches.updateWinner');
+
+// Route untuk kontingen (pembuatan kontingen)
+Route::get('/', [KontingenController::class, 'create'])->name('kontingen.create');
+Route::post('/daftar-kontingen', [KontingenController::class, 'store'])->name('kontingen.store');
+
 Route::get('/export-pdf', [ManajemenController::class, 'print']);
 Route::get('/export/{id}', [ManajemenController::class, 'printDetail'])->name('export');
 
